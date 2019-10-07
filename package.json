@@ -1,0 +1,16 @@
+{
+  "name": "CSSA",
+  "version": "1.0.0",
+  "description": "Website for CSSA Victoria",
+  "main": "index.js",
+  "repository": "https://github.com/yishuxin/CSSA.git",
+  "author": "Patrick Xin <alpesdream@gmail.com>",
+  "license": "MIT",
+  "private": null,
+  "dependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}

@@ -12,21 +12,50 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.scss" />
     <title>CSSA</title>
   </head>
   <body class="body">
-    <header class="header">
-      <a class="logo" href="./index.html"></a>
-      <nav class="nav">
+    <!-- Header Starts -->
+    <!-- <header class="header"> -->
+    <!-- <a class="logo" href="./index.html"></a> -->
+    <!-- <nav class="nav">
         <ul class="nav-list">
           <a href=""><li class="list-item">关于我们</li></a>
           <a href=""><li class="list-item">学生服务</li></a>
           <a href=""><li class="list-item">联系我们</li></a>
         </ul>
       </nav>
-    </header>
+      <div class="menu-btn">
+        <div class="btn-line"></div>
+        <div class="btn-line"></div>
+        <div class="btn-line"></div>
+      </div> -->
+
+    <nav class="navbar">
+      <span class="navbar-toggle" id="js-navbar-toggle">
+        <i class="fas fa-bars"></i>
+      </span>
+      <a class="logo" href="./index.html"></a>
+      <ul class="main-nav" id="js-menu">
+        <li>
+          <a href="#" class="nav-links">关于我们</a>
+        </li>
+        <li>
+          <a href="#" class="nav-links">学生服务</a>
+        </li>
+        <li>
+          <a href="#" class="nav-links">联系我们</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- </header> -->
+
+    <!-- Header Ends -->
+
+    <!-- Main Starts -->
     <main>
+      <!-- Hero Section Starts -->
       <section class="hero">
         <div class="layer">
           <div class="hero-wrapper">
@@ -35,18 +64,27 @@
           </div>
         </div>
       </section>
+      <!-- Hero Section Ends -->
+
+      <!-- Jumbotron Section Starts -->
       <section class="jumbotron">
-        <h1>关于CSSA</h1>
-        <p>
-          CSSAVC全称VICTORIA CHINESE STUDENTS AND SCHOLARS ASSOCIATION,
-          既大维多利亚地区中华学生学者联谊会。
-        </p>
-        <p>
-          我们是驻温哥华领事馆教育部管理下的非盈利学生组织，也是维多利亚大学的注册社团。
-        </p>
+        <div class="jumbotron-wrapper">
+          <h1>关于CSSA</h1>
+          <p>
+            CSSAVC全称VICTORIA CHINESE STUDENTS AND SCHOLARS ASSOCIATION,
+            既大维多利亚地区中华学生学者联谊会。
+          </p>
+          <p>
+            我们是驻温哥华领事馆教育部管理下的非盈利学生组织，也是维多利亚大学的注册社团。
+          </p>
+        </div>
       </section>
+      <!-- Jumbotron Section Ends -->
+
+      <!-- Content Section Starts -->
       <section class="content-container">
         <div class="content-container-wrapper">
+          <!-- Content History Part Starts -->
           <article class="content content-history">
             <div class="content-text content-text__history ">
               <div class="text-wrapper">
@@ -63,7 +101,10 @@
               <img src="./images/history.png" alt="" />
             </figure>
           </article>
+          <!-- Content History Part Ends -->
           <hr class="divider" />
+
+          <!-- Content Team Part Starts -->
           <article class="content content-team">
             <figure class="content-pic content-pic__team">
               <img src="./images/team.png" alt="" />
@@ -79,7 +120,9 @@
               </div>
             </div>
           </article>
+          <!-- Content Team Part Ends -->
           <hr class="divider" />
+          <!-- Content Mission Part Starts -->
           <article class="content content-mission">
             <div class="content-text content-text__mission">
               <div class="text-wrapper">
@@ -96,57 +139,87 @@
               <img src="./images/goal.png" alt="" />
             </figure>
           </article>
-        </div>
-      </section>
-      <section class="motto">
-        <h1>我们的核心价值：</h1>
+          <!-- Content Mission Part Ends -->
+          <hr class="divider" />
+          <!-- Content Motto Part Starts -->
+          <section class="motto">
+            <h1>我们的核心价值：</h1>
+            <div class="motto-content">
+              <div class="respect">
+                <h2 class="content-heading">
+                  尊重
+                </h2>
+                <p class="content-paragraph hidden">
+                  我们尊重学生，会举办符合学生需要并能帮助到他们的活动。我们尊重执委，将尽可能让每个人都有锻炼自己并且实现自己价值的机会。我们尊重师长，会悉心听取他们的建议，并增强师生交流。我们尊重社区，会在时间充裕的情况下尽可能的回馈社会。我们尊重祖国，志愿将悠久的中国文化传递到维多利亚来。
+                </p>
+              </div>
 
-        <div class="motto-content">
-          <div class="content-row">
-            <div class="respect">
-              <h2>
-                尊重
-              </h2>
-              <p>
-                我们尊重学生，会举办符合学生需要并能帮助到他们的活动。我们尊重执委，将尽可能让每个人都有锻炼自己并且实现自己价值的机会。我们尊重师长，会悉心听取他们的建议，并增强师生交流。我们尊重社区，会在时间充裕的情况下尽可能的回馈社会。我们尊重祖国，志愿将悠久的中国文化传递到维多利亚来。
-              </p>
+              <div class="equality">
+                <h2 class="content-heading">平等</h2>
+                <p class="content-paragraph hidden">
+                  作为一个非政治性、非盈利性的学生组织，维多利亚CSSA将会公平地服务所有需要帮助的中华学生以及学者，努力为大维多利亚地区的所有华人群体谋求更多的福利。
+                </p>
+              </div>
+
+              <div class="union">
+                <h2 class="content-heading">团结与包容</h2>
+                <p class="content-paragraph hidden">
+                  我们相信一个好的组织离不开团结友爱的集体，也相信理解与包容是一个好团队的基石。我们会聆听每一个执委的想法，并将它们有机地整合在一起，更好地服务华人学生群体。
+                </p>
+              </div>
+
+              <div class="fun">
+                <h2 class="content-heading">趣味性和有意义</h2>
+                <p class="content-paragraph hidden">
+                  我们相信活动就应该有趣和有意义。我们期待活动的每一位参与者都能感受到组织者的用心，并且愿意继续参加我们的活动。
+                </p>
+              </div>
+
+              <div class="non-profit">
+                <h2 class="content-heading">非盈利性</h2>
+                <p class="content-paragraph hidden">
+                  我们会以最合理的方式使用我们从各方得到的资金和物资支持，并且会尽最大努力回报各方对我们的支持。作为非盈利组织，所有的活动收入都会用于日后活动的举办。
+                </p>
+              </div>
             </div>
-            <div class="equality">
-              <h2>平等</h2>
-              <p>
-                作为一个非政治性、非盈利性的学生组织，维多利亚CSSA将会公平地服务所有需要帮助的中华学生以及学者，努力为大维多利亚地区的所有华人群体谋求更多的福利。
-              </p>
-            </div>
-            <div class="union">
-              <h2>团结与包容</h2>
-              <p>
-                我们相信一个好的组织离不开团结友爱的集体，也相信理解与包容是一个好团队的基石。我们会聆听每一个执委的想法，并将它们有机地整合在一起，更好地服务华人学生群体。
-              </p>
-            </div>
-          </div>
-          <div class="content-row">
-            <div class="fun">
-              <h2>趣味性和有意义</h2>
-              <p>
-                我们相信活动就应该有趣和有意义。我们期待活动的每一位参与者都能感受到组织者的用心，并且愿意继续参加我们的活动。
-              </p>
-            </div>
-            <div class="non-profit">
-              <h2>非盈利性</h2>
-              <p>
-                我们会以最合理的方式使用我们从各方得到的资金和物资支持，并且会尽最大努力回报各方对我们的支持。作为非盈利组织，所有的活动收入都会用于日后活动的举办。
-              </p>
-            </div>
-          </div>
+          </section>
+          <!-- Content Motto Part Ends -->
         </div>
       </section>
+      <!-- Content Section Ends -->
+
       <section class="dragon"></section>
-      <section class="supporters">
-        <div class="supporter vpea"></div>
-        <div class="supporter telecom"></div>
-        <div class="supporter rbc"></div>
+
+      <!-- Service Part Starts -->
+
+      <section id="service" class="service">
+        <h2>我们提供多种多样的学生服务及社团活动</h2>
+        <p>2019年的活动详情如下</p>
+        <div class="service-pic-wrapper">
+          <img src="./images/service.jpg" alt="" />
+        </div>
+        <h2>
+          我们同时也为新生提供详细的新生手册，以方便他们更快的适应学校生活。
+        </h2>
+        <div class="download">点击下载新生手册</div>
       </section>
+
+      <!-- Service Part Ends -->
+      <!-- Surpporters Section Starts -->
+      <section class="supporters">
+        <h2>我们的赞助商</h2>
+        <div class="surpporter-wrapper">
+          <div class="supporter vpea"></div>
+          <div class="supporter telecom"></div>
+          <div class="supporter rbc"></div>
+        </div>
+      </section>
+      <!-- Surpporters Section Ends -->
     </main>
+
+    <!--Main Section Ends  -->
+
+    <!-- Footer Starts -->
     <footer class="footer">
       <div class="contact-container">
         <div class="contact">
@@ -176,5 +249,8 @@
         </ul>
       </div>
     </footer>
+
+    <!-- Footer Ends -->
+    <script src="./index.js"></script>
   </body>
 </html>
