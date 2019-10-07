@@ -1,8 +1,8 @@
-const headings = document.querySelectorAll('.content-heading');
-const paras = document.querySelectorAll('.content-paragraph');
+const headings = document.querySelectorAll('.content--sub-heading');
+const paras = document.querySelectorAll('.content--paragraph');
 
-let mainNav = document.getElementById('js-menu');
-let navBarToggle = document.getElementById('js-navbar-toggle');
+let mainNav = document.querySelector('.main-nav');
+let navBarToggle = document.querySelector('.navbar-toggle');
 
 navBarToggle.addEventListener('click', function() {
   mainNav.classList.toggle('active');

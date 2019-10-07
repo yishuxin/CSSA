@@ -6,7 +6,7 @@
   "repository": "https://github.com/yishuxin/CSSA.git",
   "author": "Patrick Xin <alpesdream@gmail.com>",
   "license": "MIT",
-  "private": null,
+  "private": false,
   "dependencies": {
     "parcel-bundler": "^1.12.4"
   },
