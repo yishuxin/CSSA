@@ -4754,6 +4754,11 @@ saxes@^3.1.9:
   dependencies:
     xmlchars "^2.1.1"
 
+scroll-out@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/scroll-out/-/scroll-out-2.2.7.tgz#cdaac36db8c7e139600578c29ecd7545728dd90e"
+  integrity sha512-13DwcWYM70osQgtWpp3LYepAvemo7TzSeXfVrZXaS2wCprHhyBYLYss1Y+llDZF2BpxFYOwxhSAdpPLtJqV0yw==
+
 scss-tokenizer@^0.2.3:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/scss-tokenizer/-/scss-tokenizer-0.2.3.tgz#8eb06db9a9723333824d3f5530641149847ce5d1"

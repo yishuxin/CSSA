@@ -19,8 +19,8 @@
       </div>
       <a class="logo" href="./index.html"></a>
       <ul class="main-nav" id="js-menu">
-        <li>
-          <a href="#" class="nav-links">关于我们</a>
+        <li class="nav-links">
+          关于我们
         </li>
         <li>
           <a href="#" class="nav-links">学生服务</a>
@@ -30,14 +30,14 @@
         </li>
       </ul>
       <ul class="nav">
-        <li>
-          <a href="#" class="nav-links">关于我们</a>
+        <li class="nav-links nav--about hover-effect">
+          关于我们
         </li>
-        <li>
-          <a href="#" class="nav-links">学生服务</a>
+        <li class="nav-links nav--service hover-effect">
+          学生服务
         </li>
-        <li>
-          <a href="#" class="nav-links">联系我们</a>
+        <li class="nav-links nav--contact hover-effect">
+          联系我们
         </li>
       </ul>
     </nav>
@@ -58,9 +58,9 @@
       <!-- Hero Section Ends -->
 
       <!-- Jumbotron Section Starts -->
-      <section class="jumbotron">
+      <section class="jumbotron" id="about-us">
         <div class="jumbotron--wrapper">
-          <h1>关于CSSA</h1>
+          <h1 data-scroll>关于CSSA</h1>
           <div>
             CSSAVC全称VICTORIA CHINESE STUDENTS AND SCHOLARS
             ASSOCIATION,既大维多利亚地区中华学生学者联谊会。
@@ -183,7 +183,7 @@
       <section class="dragon"></section>
 
       <!-- Service Part Starts -->
-      <section id="service" class="service">
+      <section class="service">
         <h1>学生服务及社团活动</h1>
         <h4>2019年的活动详情:</h4>
         <div class="service--pic">
@@ -214,7 +214,9 @@
     </main>
 
     <!--Main Section Ends  -->
-
+    <button class="button button--top" title="Go to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
     <!-- Footer Starts -->
     <footer class="footer">
       <div class="contact--container">
@@ -247,6 +249,6 @@
     </footer>
 
     <!-- Footer Ends -->
-    <script src="./index.js"></script>
+    <script src="./js/index.js"></script>
   </body>
 </html>

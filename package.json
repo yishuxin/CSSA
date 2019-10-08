@@ -11,7 +11,8 @@
     "parcel-bundler": "^1.12.4"
   },
   "devDependencies": {
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "scroll-out": "^2.2.7"
   },
   "scripts": {
     "dev": "parcel index.html",

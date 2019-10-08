@@ -336,103 +336,20 @@ function main (opts) {
 
 module.exports = main;
 
-},{}],"index.js":[function(require,module,exports) {
+},{}],"js/utils.js":[function(require,module,exports) {
 "use strict";
 
-var _scrollOut = _interopRequireDefault(require("scroll-out"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var h1 = document.getElementsByTagName('h1'); // ScrollOut({
-//   onShown: () => {
-//     // use the web animation API
-//     Array.prototype.forEach.call(h1, el =>
-//       el.animate([{ opacity: 0 }, { opacity: 1 }], 1000)
-//     );
-//   },
-//   onHidden: () => {
-//     // hide the element initially
-//     Array.prototype.forEach.call(h1, el => (el.style.opacity = 0));
-//   }
-// });
-
-var headings = document.querySelectorAll('.content--sub-heading');
-var paras = document.querySelectorAll('.content--paragraph');
-var mainNav = document.querySelector('.main-nav');
-var navBarToggle = document.querySelector('.navbar-toggle');
-navBarToggle.addEventListener('click', function () {
-  mainNav.classList.toggle('active');
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+exports.toggle = exports.topFunction = exports.scrollFunction = exports.smoothScroll = void 0;
 
-function toggleContent(headings, paras, length) {
-  var _loop = function _loop(i) {
-    headings[i].addEventListener('click', function () {
-      return toggle(paras[i]);
-    });
-  };
-
-  for (var i = 0; i < length; i++) {
-    _loop(i);
-  }
-}
-
-toggleContent(headings, paras, headings.length); // Show an element
-
-var show = function show(elem) {
-  // Get the natural height of the element
-  var getHeight = function getHeight() {
-    elem.style.display = 'block'; // Make it visible
-
-    var height = elem.scrollHeight + 'px'; // Get it's height
-
-    elem.style.display = ''; //  Hide it again
-
-    return height;
-  };
-
-  var height = getHeight(); // Get the natural height
-
-  elem.classList.add('is-visible'); // Make the element visible
-
-  elem.style.height = height; // Update the max-height
-  // Once the transition is complete, remove the inline max-height so the content can scale responsively
-
-  window.setTimeout(function () {
-    elem.style.height = '';
-  }, 350);
-}; // Hide an element
-
-
-var hide = function hide(elem) {
-  // Give the element a height to change from
-  elem.style.height = elem.scrollHeight + 'px'; // Set the height back to 0
-
-  window.setTimeout(function () {
-    elem.style.height = '0';
-  }, 1); // When the transition is complete, hide it
-
-  window.setTimeout(function () {
-    elem.classList.remove('is-visible');
-  }, 350);
-}; // Toggle element visibility
-
-
-var toggle = function toggle(elem, timing) {
-  // If the element is visible, hide it
-  if (elem.classList.contains('is-visible')) {
-    hide(elem);
-    return;
-  } // Otherwise, show it
-
-
-  show(elem);
-};
-
-function smoothScroll(target, duration) {
+//smooth scroll
+var smoothScroll = function smoothScroll(target, duration, navHeight) {
   var target = document.querySelector(target);
   var targetPosition = target.getBoundingClientRect().top;
   var startPosition = window.pageYOffset;
-  var distance = targetPosition - startPosition;
+  var distance = targetPosition - startPosition - navHeight;
   var startTime = null;
 
   function animation(currentTime) {
@@ -457,50 +374,161 @@ function smoothScroll(target, duration) {
   }
 
   requestAnimationFrame(animation);
+}; //back to top
+
+
+exports.smoothScroll = smoothScroll;
+
+var scrollFunction = function scrollFunction(el) {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+};
+
+exports.scrollFunction = scrollFunction;
+
+var topFunction = function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}; //toggle content
+
+
+exports.topFunction = topFunction;
+
+var show = function show(el) {
+  var getHeight = function getHeight() {
+    el.style.display = 'block';
+    var height = el.scrollHeight + 'px';
+    el.style.display = '';
+    return height;
+  };
+
+  var height = getHeight();
+  el.classList.add('is-visible');
+  el.style.height = height; //   window.setTimeout(function() {
+  //     el.style.height = '';
+  //   }, 350);
+};
+
+var hide = function hide(el) {
+  el.style.height = el.scrollHeight + 'px'; //   window.setTimeout(function() {
+
+  el.style.height = '0'; //   }, 1);
+  //   window.setTimeout(function() {
+
+  el.classList.remove('is-visible'); //   }, 350);
+};
+
+var toggle = function toggle(el, timing) {
+  if (el.classList.contains('is-visible')) {
+    hide(el);
+    return;
+  }
+
+  show(el);
+};
+
+exports.toggle = toggle;
+},{}],"js/functions.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.toggleContent = toggleContent;
+exports.scrollToPosition = scrollToPosition;
+exports.scrollToTop = exports.toggleNav = void 0;
+
+var _utils = require("./utils.js");
+
+var mainNav = document.querySelector('.main-nav');
+var navBarToggle = document.querySelector('.navbar-toggle');
+var toTopButton = document.querySelector('.button--top');
+
+function toggleContent(headings, paras, length) {
+  var _loop = function _loop(i) {
+    headings[i].addEventListener('click', function () {
+      return (0, _utils.toggle)(paras[i]);
+    });
+  };
+
+  for (var i = 0; i < length; i++) {
+    _loop(i);
+  }
 }
 
 function scrollToPosition() {
   var about = document.querySelector('.nav--about');
   var service = document.querySelector('.nav--service');
   var contact = document.querySelector('.nav--contact');
+  var navHeight = document.querySelector('.navbar').scrollHeight;
+  console.log(navHeight);
   about.addEventListener('click', function () {
-    smoothScroll('#about-us', 1000);
+    (0, _utils.smoothScroll)('#about-us', 1000, navHeight);
   });
   service.addEventListener('click', function () {
-    smoothScroll('.service', 1000);
+    (0, _utils.smoothScroll)('.service', 1000, navHeight);
   });
   contact.addEventListener('click', function () {
-    smoothScroll('.contact', 1000);
+    (0, _utils.smoothScroll)('.contact', 1000, navHeight);
   });
 }
 
-scrollToPosition(); //button
-
-var mybutton = document.getElementById('myBtn'); // When the user scrolls down 20px from the top of the document, show the button
-
-window.onscroll = function () {
-  scrollFunction();
+var toggleNav = function toggleNav() {
+  navBarToggle.addEventListener('click', function () {
+    mainNav.classList.toggle('active');
+  });
 };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = 'block';
-  } else {
-    mybutton.style.display = 'none';
+exports.toggleNav = toggleNav;
+
+var scrollToTop = function scrollToTop() {
+  window.onscroll = function () {
+    (0, _utils.scrollFunction)(toTopButton);
+  };
+
+  if (toTopButton) {
+    toTopButton.addEventListener('click', function () {
+      return (0, _utils.smoothScroll)('.navbar', 1000, 0);
+    });
   }
-} // When the user clicks on the button, scroll to the top of the document
+};
 
+exports.scrollToTop = scrollToTop;
+},{"./utils.js":"js/utils.js"}],"js/index.js":[function(require,module,exports) {
+"use strict";
 
-function topFunction() {
-  document.body.scrollTop = 0; // For Safari
+var _scrollOut = _interopRequireDefault(require("scroll-out"));
 
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-}
+var _functions = require("./functions");
 
-mybutton.addEventListener('click', function () {
-  return topFunction();
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var headings = document.querySelectorAll('.content--sub-heading');
+var paras = document.querySelectorAll('.content--paragraph');
+var h1 = document.getElementsByTagName('h1'); // ScrollOut({
+//   onShown: () => {
+//     // use the web animation API
+//     Array.prototype.forEach.call(h1, el =>
+//       el.animate([{ opacity: 0 }, { opacity: 1 }], 1000)
+//     );
+//   },
+//   onHidden: () => {
+//     // hide the element initially
+//     Array.prototype.forEach.call(h1, el => (el.style.opacity = 0));
+//   }
+// });
+
+document.addEventListener('DOMContentLoaded', function () {
+  (0, _functions.scrollToPosition)();
+  (0, _functions.toggleNav)();
+  (0, _functions.scrollToTop)();
+  (0, _functions.toggleContent)(headings, paras, headings.length);
 });
-},{"scroll-out":"node_modules/scroll-out/lib/index.js"}],"../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"scroll-out":"node_modules/scroll-out/lib/index.js","./functions":"js/functions.js"}],"../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -528,7 +556,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57898" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50178" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -703,5 +731,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/cssa2.e31bb0bc.js.map
+},{}]},{},["../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/index.js"], null)
+//# sourceMappingURL=/js.00a46daa.js.map
