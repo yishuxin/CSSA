@@ -15,7 +15,7 @@ function scrollToPosition() {
   const service = document.querySelector('.nav--service');
   const contact = document.querySelector('.nav--contact');
   const navHeight = document.querySelector('.navbar').scrollHeight;
-  console.log(navHeight);
+
   about.addEventListener('click', () => {
     smoothScroll('#about-us', 1000, navHeight);
   });

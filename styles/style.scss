@@ -1,11 +1,7 @@
-
-
 // Varibles
 $color--primary: #e9492e;
 $color--background: #505253;
 $color--font: #fff;
-
-
 
 @mixin flexColumn {
   display: flex;
@@ -32,6 +28,7 @@ $color--font: #fff;
 html {
   /* font-size: 10px(1rem) */
   font-size: 62.5%;
+  font-family: 'Noto Serif SC', serif;
 }
 
 body {
@@ -42,12 +39,23 @@ body {
 h1,
 h2,
 h4 {
-  margin-bottom: 1.5em;
+  margin-bottom: 1.2em;
 }
 h1 {
   font-size: 2.5rem;
 }
 
+a {
+  text-decoration: none;
+  color: $color--font;
+  outline: none;
+}
+
+a:hover,
+a:focus {
+  color: #d0d0d0;
+  outline: none;
+}
 img {
   max-width: 100%;
 }
@@ -232,13 +240,15 @@ img {
     filter: drop-shadow(0 0 0.75rem rgb(41, 41, 41));
   }
   &--heading {
+    font-family: 'Ma Shan Zheng', cursive;
     color: $color--primary;
     font-size: 3.5rem;
   }
   &--sub-heading {
+    font-family: 'Ma Shan Zheng', cursive;
     font-size: 2.5rem;
     color: $color--primary;
-    opacity:0.7;
+    opacity: 0.7;
     text-align: center;
     margin-bottom: 1.5em;
     cursor: pointer;
@@ -436,15 +446,15 @@ img {
 
 @media screen and (max-width: 425px) {
   h1 {
-    margin-top: 1.5em;
+    margin-top: 1.2em;
     font-size: 2rem;
   }
   h2 {
-    margin-top: 1.2em;
+    margin-top: 1em;
     font-size: 1.5rem;
   }
   h4 {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     margin-top: 1em;
   }
   .logo {
@@ -464,6 +474,10 @@ img {
   }
 
   .content {
+    &:nth-child(1) {
+      padding-top: 2em;
+    }
+
     flex-direction: column;
     width: 100%;
     height: auto;
@@ -475,6 +489,7 @@ img {
       margin-bottom: 2em;
     }
     &--heading {
+      font-family: 'Ma Shan Zheng', cursive;
       font-size: inherit;
       color: $color--font;
     }
@@ -488,6 +503,9 @@ img {
     &--paragraph {
       font-size: 1.2rem;
     }
+  }
+  #team-text {
+    margin-left: 0;
   }
   .motto {
     border-bottom: 1px solid rgba(205, 49, 22, 0.4);
@@ -503,6 +521,15 @@ img {
     padding: 1em 0;
     &--pic {
       display: none;
+    }
+    &--pic-web {
+      display: block;
+    }
+  }
+  .supporters {
+    padding: 0;
+    h1 {
+      margin-bottom: 0;
     }
   }
   .footer {

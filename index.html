@@ -8,6 +8,10 @@
       src="https://kit.fontawesome.com/f058fcb574.js"
       crossorigin="anonymous"
     ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Ma+Shan+Zheng|Noto+Serif+SC|Zhi+Mang+Xing&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./styles/style.scss" />
     <title>CSSA</title>
   </head>
@@ -20,13 +24,13 @@
       <a class="logo" href="./index.html"></a>
       <ul class="main-nav" id="js-menu">
         <li class="nav-links">
-          关于我们
+          <a href="#about-us">关于我们</a>
         </li>
-        <li>
-          <a href="#" class="nav-links">学生服务</a>
+        <li class="nav-links">
+          <a href="#service">学生服务</a>
         </li>
-        <li>
-          <a href="#" class="nav-links">联系我们</a>
+        <li class="nav-links">
+          <a href="#contact">联系我们</a>
         </li>
       </ul>
       <ul class="nav">
@@ -50,8 +54,10 @@
       <section class="hero">
         <div class="hero--layer">
           <div class="hero--wrapper">
-            <h1>Victoria Chinese Students and Scholars Association</h1>
-            <h1>维多利亚中国学生学者联谊会</h1>
+            <h1 class="hero-title">
+              Victoria Chinese Students and Scholars Association
+            </h1>
+            <h1 class="hero-title">维多利亚中国学生学者联谊会</h1>
           </div>
         </div>
       </section>
@@ -99,9 +105,8 @@
               <div class="text-wrapper">
                 <h1>我们的<span class="content--heading">团队</span>：</h1>
                 <p>
-                  CSSAVC是以大维多利亚地区各高等院校来自大中华
-                  地区的学生学者为主体; 以中国优秀文化传统为基本价值取向;
-                  以服务华人社区为己任的一个优秀团体。
+                  CSSAVC是以大维多利亚地区各高等院校来自大中华地区的学生学者为主体;
+                  以中国优秀文化传统为基本价值取向;以服务华人社区为己任的一个优秀团体。
                 </p>
               </div>
             </div>
@@ -134,6 +139,7 @@
           <!-- Content Mission Part Ends -->
 
           <!-- Content Motto Part Starts -->
+
           <section class="motto">
             <h1>我们的<span class="content--heading">核心价值</span>：</h1>
             <div class="motto--content">
@@ -183,7 +189,7 @@
       <section class="dragon"></section>
 
       <!-- Service Part Starts -->
-      <section class="service">
+      <section class="service" id="service">
         <h1>学生服务及社团活动</h1>
         <h4>2019年的活动详情:</h4>
         <div class="service--pic">
@@ -220,7 +226,7 @@
     <!-- Footer Starts -->
     <footer class="footer">
       <div class="contact--container">
-        <div class="contact">
+        <div class="contact" id="contact">
           <h1>联系我们</h1>
           <p>如有合作需要请联系CSSA主席。</p>
           <p>president@cssavc.com</p>

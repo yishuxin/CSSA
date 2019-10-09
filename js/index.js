@@ -1,4 +1,5 @@
 import ScrollOut from 'scroll-out';
+import './gsap';
 import {
   toggleContent,
   scrollToPosition,
@@ -8,7 +9,6 @@ import {
 
 const headings = document.querySelectorAll('.content--sub-heading');
 const paras = document.querySelectorAll('.content--paragraph');
-const h1 = document.getElementsByTagName('h1');
 
 // ScrollOut({
 //   onShown: () => {
