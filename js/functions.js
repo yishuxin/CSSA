@@ -1,4 +1,10 @@
-import { smoothScroll, scrollFunction, topFunction, toggle } from './utils.js';
+import {
+  smoothScroll,
+  scrollFunction,
+  topFunction,
+  toggle,
+  getHeight
+} from './utils.js';
 
 const mainNav = document.querySelector('.main-nav');
 const navBarToggle = document.querySelector('.navbar-toggle');
@@ -11,19 +17,33 @@ function toggleContent(headings, paras, length) {
 }
 
 function scrollToPosition() {
-  const about = document.querySelector('.nav--about');
-  const service = document.querySelector('.nav--service');
-  const contact = document.querySelector('.nav--contact');
+  const about = document.querySelector('.button-about');
+  const service = document.querySelector('.button-service');
+  const contact = document.querySelector('.button-contact');
   const navHeight = document.querySelector('.navbar').scrollHeight;
 
   about.addEventListener('click', () => {
-    smoothScroll('#about-us', 1000, navHeight);
+    about.style.color = 'red';
+    about.disabled = true;
+    service.disabled = false;
+    contact.disabled = false;
+    // smoothScroll('#about-us', 1000, navHeight);
   });
-  service.addEventListener('click', () => {
-    smoothScroll('.service', 1000, navHeight);
-  });
+
   contact.addEventListener('click', () => {
-    smoothScroll('.contact', 1000, navHeight);
+    contact.style.color = 'red';
+    contact.disabled = true;
+    service.disabled = false;
+    about.disabled = false;
+    // smoothScroll('.contact', 1000, navHeight);
+  });
+
+  service.addEventListener('click', () => {
+    service.style.color = 'red';
+    service.disabled = true;
+    service.disabled = false;
+    contact.disabled = false;
+    // smoothScroll('#service', 1000, navHeight);
   });
 }
 
@@ -45,4 +65,31 @@ const scrollToTop = () => {
   }
 };
 
-export { toggleContent, scrollToPosition, toggleNav, scrollToTop };
+//hide nav on scroll
+
+const hideOnScroll = el => {
+  let prevScrollpos = window.pageYOffset;
+  const height = getHeight(el);
+  window.onscroll = () => {
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.querySelector(el).style.top = '0';
+    } else {
+      document.querySelector(el).style.top = `-${height}`;
+    }
+    prevScrollpos = currentScrollPos;
+  };
+};
+
+const setVisible = (selector, visible) => {
+  document.querySelector(selector).style.display = visible ? 'block' : 'none';
+};
+
+export {
+  toggleContent,
+  scrollToPosition,
+  toggleNav,
+  scrollToTop,
+  hideOnScroll,
+  setVisible
+};

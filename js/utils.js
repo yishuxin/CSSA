@@ -2,7 +2,7 @@
 const smoothScroll = (target, duration, navHeight) => {
   var target = document.querySelector(target);
   var targetPosition = target.getBoundingClientRect().top;
-  var startPosition = window.pageYOffset;
+  let startPosition = window.pageYOffset;
   var distance = targetPosition - startPosition - navHeight;
   let startTime = null;
 
@@ -41,6 +41,12 @@ const scrollFunction = el => {
 const topFunction = () => {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+};
+
+//get element height
+const getHeight = el => {
+  const height = document.querySelector(el).scrollHeight + 'px';
+  return height;
 };
 
 //toggle content
@@ -83,4 +89,4 @@ const toggle = function(el, timing) {
   show(el);
 };
 
-export { smoothScroll, scrollFunction, topFunction, toggle };
+export { smoothScroll, scrollFunction, topFunction, toggle, getHeight };

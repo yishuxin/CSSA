@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>CSSAVC</title>
+    <meta
+      name="description"
+      content="CSSAVC-Victoria Chinese Students and Scholars Association's official website."
+    />
+    <meta
+      name="keywords"
+      content="Uvic, CSSA, student society, Victoria, BC, Chinese, Canada, students"
+    />
+    <meta name="author" content="Yishu Xin" />
     <script
       src="https://kit.fontawesome.com/f058fcb574.js"
       crossorigin="anonymous"
@@ -13,10 +23,10 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/style.scss" />
-    <title>CSSA</title>
   </head>
   <body class="body">
     <!-- Navigation Starts -->
+
     <nav class="navbar">
       <div class="navbar-toggle">
         <i class="fas fa-bars"></i>
@@ -35,13 +45,13 @@
       </ul>
       <ul class="nav">
         <li class="nav-links nav--about hover-effect">
-          关于我们
+          <button class="nav-btn button-about">关于我们</button>
         </li>
         <li class="nav-links nav--service hover-effect">
-          学生服务
+          <button class="nav-btn button-service">学生服务</button>
         </li>
         <li class="nav-links nav--contact hover-effect">
-          联系我们
+          <button class="nav-btn button-contact">联系我们</button>
         </li>
       </ul>
     </nav>
@@ -49,7 +59,7 @@
     <!-- Navigation Ends -->
 
     <!-- Main Starts -->
-    <main>
+    <main class="main">
       <!-- Hero Section Starts -->
       <section class="hero">
         <div class="hero--layer">
@@ -81,9 +91,9 @@
       <section class="content-container">
         <div class="content-container--wrapper">
           <!-- Content History Part Starts -->
-          <article class="content">
+          <article class="content ">
             <div class="content--text">
-              <div class="text-wrapper">
+              <div class="text-wrapper history">
                 <h1>我们的<span class="content--heading">历史</span>：</h1>
                 <p>
                   CSSA创建于2009年,
@@ -93,16 +103,16 @@
                 </p>
               </div>
             </div>
-            <figure class="content--pic">
+            <figure class="content--pic history-pic">
               <img src="./images/history.jpg" alt="" />
             </figure>
           </article>
           <!-- Content History Part Ends -->
 
           <!-- Content Team Part Starts -->
-          <article class="content content__team">
+          <article class="content content__team ">
             <div class="content--text" id="team-text">
-              <div class="text-wrapper">
+              <div class="text-wrapper team">
                 <h1>我们的<span class="content--heading">团队</span>：</h1>
                 <p>
                   CSSAVC是以大维多利亚地区各高等院校来自大中华地区的学生学者为主体;
@@ -110,7 +120,7 @@
                 </p>
               </div>
             </div>
-            <figure class="content--pic">
+            <figure class="content--pic team-pic">
               <img src="./images/team.jpg" alt="" />
             </figure>
           </article>
@@ -119,7 +129,7 @@
           <!-- Content Mission Part Starts -->
           <article class="content">
             <div class="content--text">
-              <div class="text-wrapper">
+              <div class="text-wrapper mission">
                 <h1>我们的<span class="content--heading">使命</span>：</h1>
                 <p>
                   凝聚起大维多利亚地区的中国学生学者社群，形成
@@ -131,7 +141,7 @@
                 </p>
               </div>
             </div>
-            <figure class="content--pic">
+            <figure class="content--pic mission-pic">
               <img src="./images/goal.jpg" alt="" />
             </figure>
           </article>
@@ -186,12 +196,9 @@
       </section>
       <!-- Content Section Ends -->
 
-      <section class="dragon"></section>
-
-      <!-- Service Part Starts -->
-      <section class="service" id="service">
+      <section class="activities">
         <h1>学生服务及社团活动</h1>
-        <h4>2019年的活动详情:</h4>
+        <h4>2019年的活动计划:</h4>
         <div class="service--pic">
           <img src="./images/service.jpg" alt="" />
         </div>
@@ -199,9 +206,31 @@
           <img src="./images/service1.jpg" alt="" />
           <img src="./images/service2.jpg" alt="" />
         </div>
-        <h4>
+        <h4>最新活动</h4>
+        <div>
+          <h2>“这！就是秀”--歌唱比赛</h2>
+          <p>
+            你可以多才多艺 你可以闪闪发光 你可以秀出完美的自己 现在 “这!就是秀”
+            给你一个好机会 只等你来参加， 在这里 有一个真正的舞台
+            有一群眼光独到的观众 有强大的组织团队 这一次
+            出类拔萃的你会被更多的人认识
+            你准备的才艺最有可能成为最受普罗大众欢迎的节目
+            演出精彩的你也可能赢得666刀的超值现金大奖 只要你来，只要你秀
+            “这!就是秀”随时准备欢迎你!
+          </p>
+
+          <a target="_blank" href="https://wj.qq.com/s2/4633930/cba7/">
+            <h4>现在报名!</h4>
+          </a>
+        </div>
+      </section>
+      <section class="dragon"></section>
+
+      <!-- Service Part Starts -->
+      <section class="service" id="service">
+        <h1>
           CSSA为新生提供详细的新生手册，
-        </h4>
+        </h1>
         <h4>以方便他们更快的适应学校生活。</h4>
         <div class="download"><p>点击下载新生手册</p></div>
       </section>
@@ -239,16 +268,22 @@
       <div class="social">
         <ul class="social--links">
           <li>
-            <a href=""><i class="fab fa-facebook-square"></i></a>
+            <a href="https://www.facebook.com/uviccssa/" target="_blank"
+              ><i class="fab fa-facebook-square"></i
+            ></a>
           </li>
           <li>
-            <a href=""><i class="fab fa-instagram"></i></a>
+            <a
+              href="https://instagram.com/cssavc?igshid=olqb636yw9zn"
+              target="_blank"
+              ><i class="fab fa-instagram"></i
+            ></a>
           </li>
           <li>
             <a href=""><i class="fab fa-weibo"></i></a>
           </li>
           <li class="wechat">
-            <a href=""><img src="./images/wechat.png" alt=""/></a>
+            <img src="./images/wechat.png" alt="" />
           </li>
         </ul>
       </div>

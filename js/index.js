@@ -28,6 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
   scrollToPosition();
   toggleNav();
   scrollToTop();
-
+  //hideOnScroll('.navbar');
   toggleContent(headings, paras, headings.length);
 });
