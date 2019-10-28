@@ -130,14 +130,13 @@ img {
   }
   .active {
     display: block;
-    height: 200px;
-    background: linear-gradient(
-      90deg,
-      rgba(222, 221, 246, 1) 0%,
-      rgba(233, 73, 46, 1) 50%,
-      rgba(231, 162, 29, 1) 100%
-    );
-    padding-top: 1em;
+    margin-top: -20px;
+    // background: linear-gradient(
+    //   90deg,
+    //   rgba(222, 221, 246, 1) 0%,
+    //   rgba(233, 73, 46, 1) 50%,
+    //   rgba(231, 162, 29, 1) 100%
+    // );
   }
 }
 
@@ -665,6 +664,9 @@ img {
     }
     &--new {
       margin-top: 0;
+      background-position: center;
+      background-attachment: initial;
+
       &__layer {
         padding-top: 3em;
         padding-bottom: 2em;
@@ -704,6 +706,14 @@ img {
   }
   .footer {
     font-size: 1.2rem;
+  }
+  .button--top {
+    padding: 5px;
+    right: 10px;
+    bottom: 10px;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    background-color: rgba(250, 60, 60, 0.7);
   }
 }
 

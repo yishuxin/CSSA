@@ -7,17 +7,21 @@ import {
 } from './utils.js';
 
 const mainNav = document.querySelector('.main-nav');
-const navBarToggle = document.querySelector('.navbar-toggle');
 const toTopButton = document.querySelector('.button--top');
+const navBarToggle = document.querySelector('.navbar-toggle');
 
 const toggleNav = () => {
-  navBarToggle.addEventListener('click', function() {
+  navBarToggle.addEventListener('click', e => {
+    e.stopPropagation();
     mainNav.classList.toggle('active');
   });
+  window.onclick = function(event) {
+    mainNav.classList.remove('active');
+  };
 };
 
 const scrollToTop = () => {
-  window.onscroll = function() {
+  window.onscroll = () => {
     scrollFunction(toTopButton);
   };
 

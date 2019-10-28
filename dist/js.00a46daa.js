@@ -21124,13 +21124,18 @@ exports.setVisible = exports.hideOnScroll = exports.scrollToTop = exports.toggle
 var _utils = require("./utils.js");
 
 var mainNav = document.querySelector('.main-nav');
-var navBarToggle = document.querySelector('.navbar-toggle');
 var toTopButton = document.querySelector('.button--top');
+var navBarToggle = document.querySelector('.navbar-toggle');
 
 var toggleNav = function toggleNav() {
-  navBarToggle.addEventListener('click', function () {
+  navBarToggle.addEventListener('click', function (e) {
+    e.stopPropagation();
     mainNav.classList.toggle('active');
   });
+
+  window.onclick = function (event) {
+    mainNav.classList.remove('active');
+  };
 };
 
 exports.toggleNav = toggleNav;
@@ -21213,7 +21218,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65533" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55580" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
