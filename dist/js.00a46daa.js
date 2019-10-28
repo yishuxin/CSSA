@@ -20946,7 +20946,8 @@ var sceneHistory = new _scrollmagic.default.Scene({
   triggerElement: '.jumbotron',
   triggerHook: 0,
   duration: 100,
-  offset: 10
+  offset: 10,
+  reverse: false
 }).setClassToggle('.history', 'visible').setClassToggle('.history-pic', 'visible').setTween(tlHistory).addTo(controller); //team
 
 tlTeam.add(_all.TweenMax.to('.team-pic', 1, {
@@ -20958,6 +20959,7 @@ var sceneTeam = new _scrollmagic.default.Scene({
   triggerElement: '.history',
   triggerHook: 0,
   duration: 100,
+  reverse: false,
   offset: 10
 }).setClassToggle('.team', 'visible').setClassToggle('.team-pic', 'visible').setTween(tlTeam).addTo(controller); //mission
 
@@ -20970,7 +20972,8 @@ var sceneMission = new _scrollmagic.default.Scene({
   triggerElement: '.team',
   triggerHook: 0,
   duration: 100,
-  offset: 10
+  offset: 10,
+  reverse: false
 }).setClassToggle('.mission', 'visible').setClassToggle('.mission-pic', 'visible').setTween(tlMission).addTo(controller);
 
 var toggleContent = function toggleContent(headingsClass, parasClass) {
@@ -21218,7 +21221,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55580" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55803" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

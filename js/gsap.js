@@ -38,7 +38,8 @@ const sceneHistory = new ScrollMagic.Scene({
   triggerElement: '.jumbotron',
   triggerHook: 0,
   duration: 100,
-  offset: 10
+  offset: 10,
+  reverse: false
 })
   .setClassToggle('.history', 'visible')
   .setClassToggle('.history-pic', 'visible')
@@ -53,7 +54,7 @@ const sceneTeam = new ScrollMagic.Scene({
   triggerElement: '.history',
   triggerHook: 0,
   duration: 100,
-
+  reverse: false,
   offset: 10
 })
   .setClassToggle('.team', 'visible')
@@ -69,7 +70,8 @@ const sceneMission = new ScrollMagic.Scene({
   triggerElement: '.team',
   triggerHook: 0,
   duration: 100,
-  offset: 10
+  offset: 10,
+  reverse: false
 })
   .setClassToggle('.mission', 'visible')
   .setClassToggle('.mission-pic', 'visible')
