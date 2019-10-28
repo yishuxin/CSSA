@@ -117,226 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"node_modules/scroll-out/lib/index.js":[function(require,module,exports) {
-'use strict';
-
-function clamp(v, min, max) {
-    return min > v ? min : max < v ? max : v;
-}
-function sign(x) {
-    return +(x > 0) - +(x < 0);
-}
-function round(n) {
-    return Math.round(n * 10000) / 10000;
-}
-
-var cache = {};
-function hyphenate(value) {
-    return cache[value] || (cache[value] = value.replace(/([A-Z])/g, replacer));
-}
-function replacer(match) {
-    return '-' + match[0].toLowerCase();
-}
-
-var win = window;
-var root = document.documentElement;
-/** find elements */
-function $(e, parent) {
-    return !e || e.length === 0
-        ? // null or empty string returns empty array
-            []
-        : e.nodeName
-            ? // a single element is wrapped in an array
-                [e]
-            : // selector and NodeList are converted to Element[]
-                [].slice.call(e[0].nodeName ? e : (parent || root).querySelectorAll(e));
-}
-var setAttrs = function (el, attrs) {
-    // tslint:disable-next-line:forin
-    for (var key in attrs) {
-        el.setAttribute("data-" + hyphenate(key), attrs[key]);
-    }
-};
-var setProps = function (cssProps) {
-    return function (el, props) {
-        for (var key in props) {
-            if (cssProps === true || cssProps[key]) {
-                el.style.setProperty("--" + hyphenate(key), round(props[key]));
-            }
-        }
-    };
-};
-
-var clearTask;
-var subscribers = [];
-function subscribe(fn) {
-    subscribers.push(fn);
-    if (!clearTask) {
-        loop();
-    }
-    return function () {
-        subscribers = subscribers.filter(function (s) { return s !== fn; });
-        if (!subscribers.length && clearTask) {
-            clearTask = 0;
-            cancelAnimationFrame(clearTask);
-        }
-    };
-}
-function loop() {
-    // process subscribers
-    var s = subscribers.slice();
-    s.forEach(function (s2) { return s2(); });
-    // schedule next loop if the queue needs it
-    clearTask = subscribers.length ? requestAnimationFrame(loop) : 0;
-}
-
-function noop() { }
-
-var SCROLL = 'scroll';
-var RESIZE = 'resize';
-var ON = 'addEventListener';
-var OFF = 'removeEventListener';
-var lastId = 0;
-/**
- * Creates a new instance of ScrollOut that marks elements in the viewport with
- * an "in" class and marks elements outside of the viewport with an "out"
- */
-// tslint:disable-next-line:no-default-export
-function main (opts) {
-    // Apply default options.
-    opts = opts || {};
-    // Debounce onChange/onHidden/onShown.
-    var onChange = opts.onChange || noop;
-    var onHidden = opts.onHidden || noop;
-    var onShown = opts.onShown || noop;
-    var props = opts.cssProps ? setProps(opts.cssProps) : noop;
-    var se = opts.scrollingElement;
-    var container = se ? $(se)[0] : win;
-    var doc = se ? $(se)[0] : root;
-    var id = ++lastId;
-    var changeAndDetect = function (obj, key, value) {
-        return obj[key + id] !== (obj[key + id] = JSON.stringify(value));
-    };
-    var rootCtx;
-    // tslint:disable-next-line:no-any
-    var elements;
-    var shouldIndex;
-    var index = function () {
-        shouldIndex = true;
-    };
-    var cx, cy;
-    var update = function () {
-        if (shouldIndex) {
-            shouldIndex = false;
-            elements = $(opts.targets || '[data-scroll]', $(opts.scope || doc)[0])
-                .map(function (el) { return ({ $: el, ctx: {} }); });
-        }
-        // Calculate position, direction and ratio.
-        var cw = doc.clientWidth;
-        var ch = doc.clientHeight;
-        var dirX = sign(-cx + (cx = doc.scrollLeft || win.pageXOffset));
-        var dirY = sign(-cy + (cy = doc.scrollTop || win.pageYOffset));
-        var scrollPercentX = doc.scrollLeft / (doc.scrollWidth - cw || 1);
-        var scrollPercentY = doc.scrollTop / (doc.scrollHeight - ch || 1);
-        // Call update to dom.
-        rootCtx =
-            { scrollDirX: dirX, scrollDirY: dirY, scrollPercentX: scrollPercentX, scrollPercentY: scrollPercentY };
-        elements.forEach(function (obj) {
-            var el = obj.$;
-            // find the distance from the element to the scrolling container
-            var target = el;
-            var x = 0;
-            var y = 0;
-            do {
-                x += target.offsetLeft;
-                y += target.offsetTop;
-                target = target.offsetParent;
-            } while (target && target !== container);
-            // Get element dimensions.
-            var w = el.clientWidth || el.offsetWidth || 0;
-            var h = el.clientHeight || el.offsetHeight || 0;
-            // Find visible ratios for each element.
-            var visibleX = (clamp(x + w, cx, cx + cw) - clamp(x, cx, cx + cw)) / w;
-            var visibleY = (clamp(y + h, cy, cy + ch) - clamp(y, cy, cy + ch)) / h;
-            var viewportX = clamp((cx - (w / 2 + x - cw / 2)) / (cw / 2), -1, 1);
-            var viewportY = clamp((cy - (h / 2 + y - ch / 2)) / (ch / 2), -1, 1);
-            var visible = +(opts.offset ? opts.offset <= cy :
-                (opts.threshold || 0) < visibleX * visibleY);
-            obj.ctx = {
-                elementHeight: h,
-                elementWidth: w,
-                intersectX: visibleX === 1 ? 0 : sign(x - cx),
-                intersectY: visibleY === 1 ? 0 : sign(y - cy),
-                offsetX: x,
-                offsetY: y,
-                viewportX: viewportX,
-                viewportY: viewportY,
-                visible: visible,
-                visibleX: visibleX,
-                visibleY: visibleY
-            };
-        });
-    };
-    var render = function () {
-        if (!elements) {
-            return;
-        }
-        // Update root attributes if they have changed.
-        var rootAttributes = {
-            scrollDirX: rootCtx.scrollDirX,
-            scrollDirY: rootCtx.scrollDirY
-        };
-        if (changeAndDetect(doc, '_SA', rootAttributes)) {
-            setAttrs(doc, rootAttributes);
-        }
-        // Update props if the root context has changed.
-        if (changeAndDetect(doc, '_S', rootCtx)) {
-            props(doc, rootCtx);
-        }
-        var len = elements.length;
-        for (var x = len - 1; x > -1; x--) {
-            var obj = elements[x];
-            var el = obj.$;
-            var ctx = obj.ctx;
-            var visible = ctx.visible;
-            if (changeAndDetect(el, '_SO', ctx)) {
-                // If percentage visibility has changed, update.
-                props(el, ctx);
-            }
-            // Handle JavaScript callbacks.
-            if (changeAndDetect(el, '_SV', visible)) {
-                setAttrs(el, { scroll: visible ? 'in' : 'out' });
-                ctx.index = x;
-                onChange(el, ctx, doc);
-                (visible ? onShown : onHidden)(el, ctx, doc);
-            }
-            // if this is shown multiple times, keep it in the list
-            if (visible && opts.once) {
-                elements.splice(x, 1);
-            }
-        }
-    };
-    var sub = subscribe(render);
-    // Run initialize index.
-    index();
-    update();
-    // Hook up document listeners to automatically detect changes.
-    win[ON](RESIZE, update);
-    container[ON](SCROLL, update);
-    return {
-        index: index,
-        teardown: function () {
-            sub();
-            win[OFF](RESIZE, update);
-            container[OFF](SCROLL, update);
-        },
-        update: update
-    };
-}
-
-module.exports = main;
-
-},{}],"node_modules/gsap/TweenLite.js":[function(require,module,exports) {
+})({"node_modules/gsap/TweenLite.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -21138,78 +20919,96 @@ var tlTeam = new _all.TimelineMax();
 var tlMission = new _all.TimelineMax({
   ease: SlowMo.ease.config(0.7, 0.7, false)
 }); // //Scene1
-// tl1
-//   .add(
-//     TweenMax.fromTo('.logo', 1, { opacity: 0, y: -100 }, { opacity: 1, y: 0 })
-//   )
-//   .staggerFromTo(
-//     '.nav-links',
-//     1,
-//     { opacity: 0 },
-//     { opacity: 1, stagger: 0.2 },
-//     '+=0.5'
-//   )
-//   .staggerFromTo(
-//     '.hero-title',
-//     1,
-//     { opacity: 0 },
-//     { opacity: 1, stagger: 0.2 }
-//   );
 
-tlHistory.add(_all.TweenMax.fromTo('.history', 1, {
+tl1.add(_all.TweenMax.fromTo('.logo', 1, {
   opacity: 0,
-  y: 100
+  y: -100
 }, {
   opacity: 1,
   y: 0
-})).add(_all.TweenMax.to('.history-pic', 3, {
+})).staggerFromTo('.nav-links', 1, {
+  opacity: 0
+}, {
+  opacity: 1,
+  stagger: 0.2
+}, '+=0.5').staggerFromTo('.hero-title', 1, {
+  opacity: 0
+}, {
+  opacity: 1,
+  stagger: 0.2
+});
+tlHistory.add(_all.TweenMax.to('.history', 1, {
   opacity: 1
-}), '+=5');
+})).add(_all.TweenMax.to('.history-pic', 2, {
+  opacity: 1
+}), '+=2');
 var sceneHistory = new _scrollmagic.default.Scene({
   triggerElement: '.jumbotron',
   triggerHook: 0,
   duration: 100,
-  reverse: true
+  offset: 10
 }).setClassToggle('.history', 'visible').setClassToggle('.history-pic', 'visible').setTween(tlHistory).addTo(controller); //team
 
-tlTeam.add(_all.TweenMax.fromTo('.team', 1, {
-  opacity: 0,
-  y: 100
-}, {
-  opacity: 1,
-  y: 0
-})).add(_all.TweenMax.fromTo('.team-pic', 3, {
-  opacity: 0
-}, {
+tlTeam.add(_all.TweenMax.to('.team-pic', 1, {
   opacity: 1
-}), '+=5');
+})).add(_all.TweenMax.to('.team', 2, {
+  opacity: 1
+}), '+=2');
 var sceneTeam = new _scrollmagic.default.Scene({
   triggerElement: '.history',
   triggerHook: 0,
   duration: 100,
-  reverse: true,
-  offset: 100
+  offset: 10
 }).setClassToggle('.team', 'visible').setClassToggle('.team-pic', 'visible').setTween(tlTeam).addTo(controller); //mission
 
-tlMission.add(_all.TweenMax.fromTo('.mission', 2, {
-  opacity: 0,
-  y: 100
-}, {
-  opacity: 1,
-  y: 0
-})).add(_all.TweenMax.fromTo('.mission-pic', 2, {
-  opacity: 0
-}, {
+tlMission.add(_all.TweenMax.to('.mission', 1, {
   opacity: 1
-}), '+=5');
+})).add(_all.TweenMax.to('.mission-pic', 2, {
+  opacity: 1
+}), '+=2');
 var sceneMission = new _scrollmagic.default.Scene({
   triggerElement: '.team',
   triggerHook: 0,
-  // show, when scrolled 10% into view
-  duration: '30%' // hide 10% before exiting view (80% + 10% from bottom)
-  // offset: 10 // move trigger to center of element
+  duration: 100,
+  offset: 10
+}).setClassToggle('.mission', 'visible').setClassToggle('.mission-pic', 'visible').setTween(tlMission).addTo(controller);
 
-}).setTween(tlMission).addIndicators().addTo(controller);
+var toggleContent = function toggleContent(headingsClass, parasClass) {
+  var headings = document.querySelectorAll(headingsClass);
+  var paras = document.querySelectorAll(parasClass);
+
+  var _loop = function _loop(i) {
+    headings[i].addEventListener('click', function () {
+      if (!paras[i].classList.contains('active')) {
+        _all.TweenMax.fromTo(paras[i], 1, {
+          opacity: 0,
+          y: -10
+        }, {
+          opacity: 1,
+          y: 0
+        });
+
+        paras[i].classList.add('active');
+      } else {
+        _all.TweenMax.fromTo(paras[i], 1, {
+          opacity: 1,
+          y: 0
+        }, {
+          opacity: 0,
+          y: -10
+        });
+
+        paras[i].classList.remove('active');
+      }
+    });
+  };
+
+  for (var i = 0; i < headings.length; i++) {
+    _loop(i);
+  }
+};
+
+toggleContent('.content--sub-heading', '.content--paragraph');
 },{"gsap/all":"node_modules/gsap/all.js","scrollmagic":"node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js","scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap":"node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js","scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators":"node_modules/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js"}],"js/utils.js":[function(require,module,exports) {
 "use strict";
 
@@ -21320,8 +21119,6 @@ exports.toggle = toggle;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.toggleContent = toggleContent;
-exports.scrollToPosition = scrollToPosition;
 exports.setVisible = exports.hideOnScroll = exports.scrollToTop = exports.toggleNav = void 0;
 
 var _utils = require("./utils.js");
@@ -21329,43 +21126,6 @@ var _utils = require("./utils.js");
 var mainNav = document.querySelector('.main-nav');
 var navBarToggle = document.querySelector('.navbar-toggle');
 var toTopButton = document.querySelector('.button--top');
-
-function toggleContent(headings, paras, length) {
-  var _loop = function _loop(i) {
-    headings[i].addEventListener('click', function () {
-      return (0, _utils.toggle)(paras[i]);
-    });
-  };
-
-  for (var i = 0; i < length; i++) {
-    _loop(i);
-  }
-}
-
-function scrollToPosition() {
-  var about = document.querySelector('.button-about');
-  var service = document.querySelector('.button-service');
-  var contact = document.querySelector('.button-contact');
-  var navHeight = document.querySelector('.navbar').scrollHeight;
-  about.addEventListener('click', function () {
-    about.style.color = 'red';
-    about.disabled = true;
-    service.disabled = false;
-    contact.disabled = false; // smoothScroll('#about-us', 1000, navHeight);
-  });
-  contact.addEventListener('click', function () {
-    contact.style.color = 'red';
-    contact.disabled = true;
-    service.disabled = false;
-    about.disabled = false; // smoothScroll('.contact', 1000, navHeight);
-  });
-  service.addEventListener('click', function () {
-    service.style.color = 'red';
-    service.disabled = true;
-    service.disabled = false;
-    contact.disabled = false; // smoothScroll('#service', 1000, navHeight);
-  });
-}
 
 var toggleNav = function toggleNav() {
   navBarToggle.addEventListener('click', function () {
@@ -21417,36 +21177,15 @@ exports.setVisible = setVisible;
 },{"./utils.js":"js/utils.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
-var _scrollOut = _interopRequireDefault(require("scroll-out"));
-
 require("./gsap");
 
 var _functions = require("./functions");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var headings = document.querySelectorAll('.content--sub-heading');
-var paras = document.querySelectorAll('.content--paragraph'); // ScrollOut({
-//   onShown: () => {
-//     // use the web animation API
-//     Array.prototype.forEach.call(h1, el =>
-//       el.animate([{ opacity: 0 }, { opacity: 1 }], 1000)
-//     );
-//   },
-//   onHidden: () => {
-//     // hide the element initially
-//     Array.prototype.forEach.call(h1, el => (el.style.opacity = 0));
-//   }
-// });
-
 document.addEventListener('DOMContentLoaded', function () {
-  (0, _functions.scrollToPosition)();
   (0, _functions.toggleNav)();
-  (0, _functions.scrollToTop)(); //hideOnScroll('.navbar');
-
-  (0, _functions.toggleContent)(headings, paras, headings.length);
+  (0, _functions.scrollToTop)();
 });
-},{"scroll-out":"node_modules/scroll-out/lib/index.js","./gsap":"js/gsap.js","./functions":"js/functions.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./gsap":"js/gsap.js","./functions":"js/functions.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -21474,7 +21213,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58348" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65533" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

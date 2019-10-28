@@ -12,47 +12,53 @@ html {
 
 body {
   box-sizing: border-box;
-  color: #fff; }
+  color: #f0f0f0;
+  background-image: url("/dark_wall.e7f2f8e8.png"); }
 
 h1,
 h2,
+h3,
 h4 {
   margin-bottom: 1.2em; }
 
 h1 {
   font-size: 2.5rem; }
 
+h3 {
+  font-size: 2rem; }
+
+h4 {
+  font-size: 1.5rem; }
+
 a {
   text-decoration: none;
-  color: #fff;
+  color: #f0f0f0;
   outline: none; }
 
 a:hover,
 a:focus {
-  color: #d0d0d0;
+  color: #ffffff;
   outline: none; }
 
 img {
   max-width: 100%; }
 
 .navbar {
+  z-index: 10000;
   position: fixed;
   top: 0;
   height: auto;
   width: 100%;
-  opacity: 0.9;
-  background: #deddf6;
   background: -moz-linear-gradient(90deg, #deddf6 0%, #e9492e 50%, #e7a21d 100%);
   background: -webkit-linear-gradient(90deg, #deddf6 0%, #e9492e 50%, #e7a21d 100%);
   background: linear-gradient(90deg, #deddf6 0%, #e9492e 50%, #e7a21d 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#deddf6",endColorstr="#e7a21d",GradientType=1);
-  padding-bottom: 10px; }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#deddf6",endColorstr="#e7a21d",GradientType=1); }
   .navbar .main-nav {
     list-style-type: none;
     display: none; }
   .navbar .nav-links {
     text-decoration: none;
-    color: #fff;
+    color: #f0f0f0;
     font-size: 1.5rem;
     cursor: pointer; }
   .navbar .main-nav li {
@@ -92,7 +98,7 @@ img {
     background-color: transparent;
     border: none;
     font-size: 1.3rem;
-    color: #fff; }
+    color: #f0f0f0; }
 
 .hero {
   position: relative;
@@ -119,7 +125,8 @@ img {
 
 .jumbotron {
   font-size: 1.6rem;
-  padding: 3em 0;
+  padding-top: 5em;
+  padding-bottom: 5em;
   text-align: center;
   line-height: 1.2em;
   width: 100vw;
@@ -129,10 +136,7 @@ img {
     margin-bottom: 1.5em; }
 
 .content-container {
-  background: #1f1f1f;
-  background: -moz-linear-gradient(90deg, #1f1f1f 0%, #251812 50%, #241d11 100%);
-  background: -webkit-linear-gradient(90deg, #1f1f1f 0%, #251812 50%, #241d11 100%);
-  background: linear-gradient(90deg, #1f1f1f 0%, #251812 50%, #241d11 100%);
+  background-image: url("/dark_wall.e7f2f8e8.png");
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1f1f1f",endColorstr="#241d11",GradientType=1); }
   .content-container--wrapper {
     width: 90%;
@@ -146,7 +150,8 @@ img {
   font-size: 1.6rem;
   border-bottom: 1px solid rgba(205, 49, 22, 0.4);
   margin-bottom: 2em;
-  padding-bottom: 1em; }
+  padding-bottom: 1em;
+  transition: all 350ms ease-in-out; }
   .content p {
     line-height: 2em; }
   .content--text {
@@ -164,6 +169,7 @@ img {
     color: #e9492e;
     font-size: 3.5rem; }
   .content--sub-heading {
+    display: inline-block;
     font-family: 'Ma Shan Zheng', cursive;
     font-size: 2.5rem;
     color: #e9492e;
@@ -171,21 +177,24 @@ img {
     text-align: center;
     margin-bottom: 1.5em;
     cursor: pointer; }
+    .content--sub-heading:hover {
+      color: #f0f0f0;
+      transform: scale(1.1); }
   .content__team {
     flex-direction: row-reverse; }
   .content--paragraph {
     display: none;
-    height: 0;
     overflow: hidden;
-    transition: height 350ms ease-in-out; }
+    text-align: start; }
 
 #team-text {
   margin-right: 0;
   margin-left: 2em; }
 
 .motto {
-  padding-bottom: 5em;
-  font-size: 1.6rem; }
+  padding-bottom: 2em;
+  font-size: 1.6rem;
+  border-bottom: 1px solid rgba(205, 49, 22, 0.4); }
   .motto h1 {
     text-align: center; }
   .motto p {
@@ -193,6 +202,8 @@ img {
     width: 70%;
     margin: 0 auto;
     margin-bottom: 2em; }
+  .motto--content {
+    text-align: center; }
 
 .dragon {
   height: 80vh;
@@ -203,7 +214,73 @@ img {
   background-position: center; }
 
 .activities {
-  background-image: url("/bg_pattern.347e2f04.png"); }
+  background-image: url("/dark_wall.e7f2f8e8.png");
+  text-align: center;
+  font-size: 1.6rem;
+  width: 100%;
+  margin: 0 auto; }
+  .activities h1 {
+    margin-top: 1em;
+    margin-bottom: 2em; }
+  .activities p {
+    text-align: start;
+    margin-bottom: 2em;
+    line-height: 2em; }
+  .activities--plan {
+    position: relative; }
+  .activities--new {
+    position: relative;
+    height: 90vh;
+    padding: 3em 0;
+    background-image: url("/concert.3b26bcdd.jpg");
+    background-attachment: fixed;
+    background-position: 15% 80%;
+    background-size: cover;
+    background-repeat: no-repeat; }
+    .activities--new__layer {
+      padding-top: 5em;
+      padding-bottom: 5em;
+      background-color: rgba(55, 55, 55, 0.7);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .activities--new__wrapper {
+      text-align: center; }
+    .activities--new h1 {
+      margin: 1.5em auto;
+      margin-top: 2em; }
+    .activities--new h3 {
+      margin-bottom: 2em;
+      display: inline-block;
+      background-color: rgba(255, 217, 1, 0.7);
+      font-size: 1.6rem;
+      padding: 0.5em 1.5em;
+      border-radius: 10px; }
+    .activities--new h4 {
+      font-style: italic;
+      font-size: 2rem;
+      margin-bottom: 2em;
+      color: #d5b605; }
+    .activities--new a {
+      display: inline-block;
+      margin-bottom: 2em; }
+    .activities--new p {
+      width: 90%;
+      margin: 2em auto; }
+    .activities--new__title {
+      font-style: italic;
+      font-weight: bold;
+      font-size: 5rem;
+      color: #f4d002;
+      font-family: 'Ma Shan Zheng', cursive; }
+    .activities--new__subtitle {
+      font-size: 2rem;
+      color: #f4d002; }
 
 .service {
   padding: 2em 0;
@@ -220,6 +297,14 @@ img {
     display: block; }
   .service--pic-web {
     display: none; }
+
+.download h4 {
+  margin-bottom: 2em;
+  display: inline-block;
+  background-color: rgba(106, 106, 106, 0.7);
+  font-size: 1.6rem;
+  padding: 0.5em 1.5em;
+  border-radius: 10px; }
 
 .supporters {
   background: #fff;
@@ -287,7 +372,7 @@ img {
   list-style: none; }
   .social--links .fab {
     font-size: 3rem;
-    color: #fff;
+    color: #f0f0f0;
     cursor: pointer; }
     .social--links .fab:hover {
       transition: all 0.1s ease-in-out;
@@ -313,7 +398,7 @@ img {
   border: none;
   outline: none;
   background-color: #e9492e;
-  color: #fff;
+  color: #f0f0f0;
   cursor: pointer;
   padding: 15px;
   border-radius: 10px;
@@ -359,7 +444,7 @@ img {
     .content--heading {
       font-family: 'Ma Shan Zheng', cursive;
       font-size: inherit;
-      color: #fff; }
+      color: #f0f0f0; }
     .content--pic {
       width: 100%; }
     .content--sub-heading {
@@ -373,10 +458,33 @@ img {
     padding-bottom: 1.5em; }
     .motto p {
       width: 90%; }
+  .activities h1 {
+    font-size: 2rem; }
+  .activities h3 {
+    font-size: 1.5rem; }
+  .activities h4 {
+    font-size: 1.4rem;
+    margin-bottom: 0.7em; }
+  .activities p {
+    font-size: 1.2rem; }
+  .activities--new {
+    margin-top: 0; }
+    .activities--new__layer {
+      padding-top: 3em;
+      padding-bottom: 2em; }
+    .activities--new__title {
+      font-size: 3rem; }
+    .activities--new h3 {
+      font-size: 1.3rem;
+      margin-bottom: 2em; }
   .dragon {
     display: none; }
   .service {
     padding: 1em 0; }
+    .service h3 {
+      font-size: 1.5rem; }
+    .service h4 {
+      font-size: 1.3rem; }
     .service--pic {
       display: none; }
     .service--pic-web {
@@ -390,6 +498,7 @@ img {
 
 @media screen and (min-width: 768px) {
   .navbar {
+    z-index: 10000;
     position: fixed;
     height: 10vh;
     width: 100%;
@@ -414,13 +523,37 @@ li {
   color: inherit;
   text-decoration: none;
   line-height: 1em; }
+  li:before, li:after {
+    content: '';
+    position: absolute;
+    transition: transform 0.3s ease; }
+
+.hover-effect {
+  padding: 0.5em;
+  display: inline-block;
+  overflow: hidden; }
+  .hover-effect:before, .hover-effect:after {
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.7); }
+  .hover-effect:before {
+    bottom: 0;
+    transform: translateX(-100%); }
+  .hover-effect:after {
+    top: 0;
+    transform: translateX(100%); }
+  .hover-effect:hover:before, .hover-effect:hover:after {
+    transform: translateX(0); }
 
 .history,
 .team,
+.mission,
 .history-pic,
-.team_pic {
+.team-pic,
+.mission-pic {
   opacity: 0;
-  transition: all 1s ease-in-out; }
+  transition: all 0.5s ease-in-out; }
 
 .visible {
   opacity: 1; }

@@ -1,7 +1,7 @@
 // Varibles
 $color--primary: #e9492e;
 $color--background: #505253;
-$color--font: #fff;
+$color--font: rgb(240, 240, 240);
 
 @mixin flexColumn {
   display: flex;
@@ -34,17 +34,24 @@ html {
 body {
   box-sizing: border-box;
   color: $color--font;
+  background-image: url('../images/dark_wall.png');
 }
 
 h1,
 h2,
+h3,
 h4 {
   margin-bottom: 1.2em;
 }
 h1 {
   font-size: 2.5rem;
 }
-
+h3 {
+  font-size: 2rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
 a {
   text-decoration: none;
   color: $color--font;
@@ -53,7 +60,7 @@ a {
 
 a:hover,
 a:focus {
-  color: #d0d0d0;
+  color: #ffffff;
   outline: none;
 }
 img {
@@ -62,12 +69,11 @@ img {
 
 // Nav
 .navbar {
+  z-index: 10000;
   position: fixed;
   top: 0;
   height: auto;
   width: 100%;
-  opacity: 0.9;
-  background: rgb(222, 221, 246);
   background: -moz-linear-gradient(
     90deg,
     rgba(222, 221, 246, 1) 0%,
@@ -87,7 +93,7 @@ img {
     rgba(231, 162, 29, 1) 100%
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#deddf6",endColorstr="#e7a21d",GradientType=1);
-  padding-bottom: 10px;
+  //padding-bottom: 10px;
   .main-nav {
     list-style-type: none;
     display: none;
@@ -179,7 +185,8 @@ img {
 //Jumbotron
 .jumbotron {
   font-size: 1.6rem;
-  padding: 3em 0;
+  padding-top: 5em;
+  padding-bottom: 5em;
   text-align: center;
   line-height: 1.2em;
   width: 100vw;
@@ -196,25 +203,26 @@ img {
 
 //Content
 .content-container {
-  background: rgb(31, 31, 31);
-  background: -moz-linear-gradient(
-    90deg,
-    rgba(31, 31, 31, 1) 0%,
-    rgba(37, 24, 18, 1) 50%,
-    rgba(36, 29, 17, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    90deg,
-    rgba(31, 31, 31, 1) 0%,
-    rgba(37, 24, 18, 1) 50%,
-    rgba(36, 29, 17, 1) 100%
-  );
-  background: linear-gradient(
-    90deg,
-    rgba(31, 31, 31, 1) 0%,
-    rgba(37, 24, 18, 1) 50%,
-    rgba(36, 29, 17, 1) 100%
-  );
+  background-image: url('../images/dark_wall.png');
+  // background: rgb(31, 31, 31);
+  // background: -moz-linear-gradient(
+  //   90deg,
+  //   rgba(31, 31, 31, 1) 0%,
+  //   rgba(37, 24, 18, 1) 50%,
+  //   rgba(36, 29, 17, 1) 100%
+  // );
+  // background: -webkit-linear-gradient(
+  //   90deg,
+  //   rgba(31, 31, 31, 1) 0%,
+  //   rgba(37, 24, 18, 1) 50%,
+  //   rgba(36, 29, 17, 1) 100%
+  // );
+  // background: linear-gradient(
+  //   90deg,
+  //   rgba(31, 31, 31, 1) 0%,
+  //   rgba(37, 24, 18, 1) 50%,
+  //   rgba(36, 29, 17, 1) 100%
+  // );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1f1f1f",endColorstr="#241d11",GradientType=1);
   &--wrapper {
     width: 90%;
@@ -231,6 +239,7 @@ img {
   border-bottom: 1px solid rgba(205, 49, 22, 0.4);
   margin-bottom: 2em;
   padding-bottom: 1em;
+  transition: all 350ms ease-in-out;
   p {
     line-height: 2em;
   }
@@ -252,6 +261,7 @@ img {
     font-size: 3.5rem;
   }
   &--sub-heading {
+    display: inline-block;
     font-family: 'Ma Shan Zheng', cursive;
     font-size: 2.5rem;
     color: $color--primary;
@@ -259,15 +269,18 @@ img {
     text-align: center;
     margin-bottom: 1.5em;
     cursor: pointer;
+    &:hover {
+      color: $color--font;
+      transform: scale(1.1);
+    }
   }
   &__team {
     flex-direction: row-reverse;
   }
   &--paragraph {
     display: none;
-    height: 0;
     overflow: hidden;
-    transition: height 350ms ease-in-out;
+    text-align: start;
   }
 }
 
@@ -278,8 +291,9 @@ img {
 
 //Motto
 .motto {
-  padding-bottom: 5em;
+  padding-bottom: 2em;
   font-size: 1.6rem;
+  border-bottom: 1px solid rgba(205, 49, 22, 0.4);
   h1 {
     text-align: center;
   }
@@ -288,6 +302,9 @@ img {
     width: 70%;
     margin: 0 auto;
     margin-bottom: 2em;
+  }
+  &--content {
+    text-align: center;
   }
 }
 
@@ -303,7 +320,90 @@ img {
 
 //Activoties
 .activities {
-  background-image: url('../images/bg_pattern.png');
+  background-image: url('../images/dark_wall.png');
+
+  text-align: center;
+  font-size: 1.6rem;
+  width: 100%;
+  margin: 0 auto;
+
+  h1 {
+    margin-top: 1em;
+    margin-bottom: 2em;
+  }
+  p {
+    text-align: start;
+    margin-bottom: 2em;
+    line-height: 2em;
+  }
+  &--plan {
+    position: relative;
+  }
+  &--new {
+    position: relative;
+    height: 90vh;
+    padding: 3em 0;
+    background-image: url('../images/concert.jpg');
+    background-attachment: fixed;
+    background-position: 15% 80%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    &__layer {
+      padding-top: 5em;
+      padding-bottom: 5em;
+      background-color: rgba(55, 55, 55, 0.7);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__wrapper {
+      text-align: center;
+    }
+    h1 {
+      margin: 1.5em auto;
+      margin-top: 2em;
+    }
+
+    h3 {
+      margin-bottom: 2em;
+      display: inline-block;
+      background-color: rgba(255, 217, 1, 0.7);
+      font-size: 1.6rem;
+      padding: 0.5em 1.5em;
+      border-radius: 10px;
+    }
+    h4 {
+      font-style: italic;
+      font-size: 2rem;
+      margin-bottom: 2em;
+      color: rgb(213, 182, 5);
+    }
+    a {
+      display: inline-block;
+      margin-bottom: 2em;
+    }
+    p {
+      width: 90%;
+      margin: 2em auto;
+    }
+    &__title {
+      font-style: italic;
+      font-weight: bold;
+      font-size: 5rem;
+      color: rgb(244, 208, 2);
+      font-family: 'Ma Shan Zheng', cursive;
+    }
+    &__subtitle {
+      font-size: 2rem;
+      color: rgb(244, 208, 2);
+    }
+  }
 }
 
 //Service
@@ -338,6 +438,17 @@ img {
   }
   &--pic-web {
     display: none;
+  }
+}
+
+.download {
+  h4 {
+    margin-bottom: 2em;
+    display: inline-block;
+    background-color: rgba(106, 106, 106, 0.7);
+    font-size: 1.6rem;
+    padding: 0.5em 1.5em;
+    border-radius: 10px;
   }
 }
 
@@ -538,11 +649,46 @@ img {
       width: 90%;
     }
   }
+  .activities {
+    h1 {
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+    }
+    h4 {
+      font-size: 1.4rem;
+      margin-bottom: 0.7em;
+    }
+    p {
+      font-size: 1.2rem;
+    }
+    &--new {
+      margin-top: 0;
+      &__layer {
+        padding-top: 3em;
+        padding-bottom: 2em;
+      }
+      &__title {
+        font-size: 3rem;
+      }
+      h3 {
+        font-size: 1.3rem;
+        margin-bottom: 2em;
+      }
+    }
+  }
   .dragon {
     display: none;
   }
   .service {
     padding: 1em 0;
+    h3 {
+      font-size: 1.5rem;
+    }
+    h4 {
+      font-size: 1.3rem;
+    }
     &--pic {
       display: none;
     }
@@ -563,6 +709,7 @@ img {
 
 @media screen and (min-width: 768px) {
   .navbar {
+    z-index: 10000;
     position: fixed;
     height: 10vh;
     width: 100%;
@@ -595,43 +742,45 @@ li {
   color: inherit;
   text-decoration: none;
   line-height: 1em;
-  // &:before,
-  // &:after {
-  //   content: '';
-  //   position: absolute;
-  //   transition: transform 0.3s ease;
-  // }
-  // }
-  // .hover-effect {
-  //   padding: 0.5em;
-  //   display: inline-block;
-  //   overflow: hidden;
-  //   &:before,
-  //   &:after {
-  //     left: 0;
-  //     width: 100%;
-  //     height: 1px;
-  //     background: rgba(255, 255, 255, 0.7);
-  //   }
-  //   &:before {
-  //     bottom: 0;
-  //     transform: translateX(-100%);
-  //   }
-  //   &:after {
-  //     top: 0;
-  //     transform: translateX(100%);
-  //   }
-  //   &:hover:before,
-  //   &:hover:after {
-  //     transform: translateX(0);
-  //   }
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    transition: transform 0.3s ease;
+  }
+}
+.hover-effect {
+  padding: 0.5em;
+  display: inline-block;
+  overflow: hidden;
+  &:before,
+  &:after {
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+  &:before {
+    bottom: 0;
+    transform: translateX(-100%);
+  }
+  &:after {
+    top: 0;
+    transform: translateX(100%);
+  }
+  &:hover:before,
+  &:hover:after {
+    transform: translateX(0);
+  }
 }
 .history,
 .team,
+.mission,
 .history-pic,
-.team_pic {
+.team-pic,
+.mission-pic {
   opacity: 0;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .visible {
