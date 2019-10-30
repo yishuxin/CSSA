@@ -176,7 +176,7 @@ img {
 
   &--wrapper {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(45, 45, 45, 0.7);
     padding: 5em;
   }
 }
@@ -309,12 +309,19 @@ img {
 
 //Dragon
 .dragon {
-  height: 80vh;
-  background-image: url('../images/handwriting.jpg');
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  width: 100vw;
+
+  //background-image: url('../images/poster.jpeg');
+  //background-attachment: fixed;
+  // background-repeat: no-repeat;
+  // background-size: contain;
+
+  // background-position: center;
+  //background-position: center;
+  img {
+    width: 100%;
+    height: 50%;
+  }
 }
 
 //Activoties
@@ -681,7 +688,7 @@ img {
     }
   }
   .dragon {
-    display: none;
+    //display: none;
   }
   .service {
     padding: 1em 0;
