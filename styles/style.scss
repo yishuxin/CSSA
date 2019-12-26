@@ -347,7 +347,7 @@ img {
   }
   &--new {
     position: relative;
-    height: 90vh;
+    height: 100vh;
     padding: 3em 0;
     background-image: url('../images/concert.jpg');
     background-attachment: fixed;
@@ -371,19 +371,37 @@ img {
     &__wrapper {
       text-align: center;
     }
+
+    &__ticket {
+      margin: 0 auto;
+      display: flex;
+      width: 50%;
+      justify-content: space-around;
+      align-items: center;
+
+      &-image {
+        img {
+          width: 50%;
+        }
+        margin-bottom: 3em;
+        &:hover {
+          transform: scale(1.5);
+        }
+      }
+    }
     h1 {
       margin: 1.5em auto;
       margin-top: 2em;
     }
 
-    h3 {
-      margin-bottom: 2em;
-      display: inline-block;
-      background-color: rgba(255, 217, 1, 0.7);
-      font-size: 1.6rem;
-      padding: 0.5em 1.5em;
-      border-radius: 10px;
-    }
+    // h3 {
+    //   margin-bottom: 2em;
+    //   display: inline-block;
+    //   background-color: rgba(255, 217, 1, 0.7);
+    //   font-size: 1.6rem;
+    //   padding: 0.5em 1.5em;
+    //   border-radius: 10px;
+    // }
     h4 {
       font-style: italic;
       font-size: 2rem;
@@ -687,9 +705,7 @@ img {
       }
     }
   }
-  .dragon {
-    //display: none;
-  }
+
   .service {
     padding: 1em 0;
     h3 {
