@@ -20884,6 +20884,11 @@ var define;
 },{"scrollmagic":"node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js"}],"js/gsap.js":[function(require,module,exports) {
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 var _all = require("gsap/all");
 
 var _scrollmagic = _interopRequireDefault(require("scrollmagic"));
@@ -20894,106 +20899,111 @@ require("scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var controller = new _scrollmagic.default.Controller();
-var tl1 = new _all.TimelineMax();
-var tlHistory = new _all.TimelineMax();
-var tlTeam = new _all.TimelineMax();
-var tlMission = new _all.TimelineMax({
-  ease: SlowMo.ease.config(0.7, 0.7, false)
-}); // //Scene1
+function animate() {
+  var controller = new _scrollmagic.default.Controller();
+  var tl1 = new _all.TimelineMax();
+  var tlHistory = new _all.TimelineMax();
+  var tlTeam = new _all.TimelineMax();
+  var tlMission = new _all.TimelineMax({
+    ease: SlowMo.ease.config(0.7, 0.7, false)
+  }); // //Scene1
 
-tl1.add(_all.TweenMax.fromTo('.logo', 1, {
-  opacity: 0,
-  y: -100
-}, {
-  opacity: 1,
-  y: 0
-})).staggerFromTo('.nav-links', 1, {
-  opacity: 0
-}, {
-  opacity: 1,
-  stagger: 0.2
-}, '+=0.5').staggerFromTo('.hero-title', 1, {
-  opacity: 0
-}, {
-  opacity: 1,
-  stagger: 0.2
-});
-tlHistory.add(_all.TweenMax.to('.history', 1, {
-  opacity: 1
-})).add(_all.TweenMax.to('.history-pic', 2, {
-  opacity: 1
-}), '+=2');
-var sceneHistory = new _scrollmagic.default.Scene({
-  triggerElement: '.jumbotron',
-  triggerHook: 0,
-  duration: 100,
-  offset: 10,
-  reverse: false
-}).setClassToggle('.history', 'visible').setClassToggle('.history-pic', 'visible').setTween(tlHistory).addTo(controller); //team
+  tl1.add(_all.TweenMax.fromTo('.logo', 1, {
+    opacity: 0,
+    y: -100
+  }, {
+    opacity: 1,
+    y: 0
+  })).staggerFromTo('.nav-links', 1, {
+    opacity: 0
+  }, {
+    opacity: 1,
+    stagger: 0.2
+  }, '+=0.5').staggerFromTo('.hero-title', 1, {
+    opacity: 0
+  }, {
+    opacity: 1,
+    stagger: 0.2
+  });
+  tlHistory.add(_all.TweenMax.to('.history', 1, {
+    opacity: 1
+  })).add(_all.TweenMax.to('.history-pic', 2, {
+    opacity: 1
+  }), '+=2');
+  var sceneHistory = new _scrollmagic.default.Scene({
+    triggerElement: '.jumbotron',
+    triggerHook: 0,
+    duration: 100,
+    offset: 10,
+    reverse: false
+  }).setClassToggle('.history', 'visible').setClassToggle('.history-pic', 'visible').setTween(tlHistory).addTo(controller); //team
 
-tlTeam.add(_all.TweenMax.to('.team-pic', 1, {
-  opacity: 1
-})).add(_all.TweenMax.to('.team', 2, {
-  opacity: 1
-}), '+=2');
-var sceneTeam = new _scrollmagic.default.Scene({
-  triggerElement: '.history',
-  triggerHook: 0,
-  duration: 100,
-  reverse: false,
-  offset: 10
-}).setClassToggle('.team', 'visible').setClassToggle('.team-pic', 'visible').setTween(tlTeam).addTo(controller); //mission
+  tlTeam.add(_all.TweenMax.to('.team-pic', 1, {
+    opacity: 1
+  })).add(_all.TweenMax.to('.team', 2, {
+    opacity: 1
+  }), '+=2');
+  var sceneTeam = new _scrollmagic.default.Scene({
+    triggerElement: '.history',
+    triggerHook: 0,
+    duration: 100,
+    reverse: false,
+    offset: 10
+  }).setClassToggle('.team', 'visible').setClassToggle('.team-pic', 'visible').setTween(tlTeam).addTo(controller); //mission
 
-tlMission.add(_all.TweenMax.to('.mission', 1, {
-  opacity: 1
-})).add(_all.TweenMax.to('.mission-pic', 2, {
-  opacity: 1
-}), '+=2');
-var sceneMission = new _scrollmagic.default.Scene({
-  triggerElement: '.team',
-  triggerHook: 0,
-  duration: 100,
-  offset: 10,
-  reverse: false
-}).setClassToggle('.mission', 'visible').setClassToggle('.mission-pic', 'visible').setTween(tlMission).addTo(controller);
+  tlMission.add(_all.TweenMax.to('.mission', 1, {
+    opacity: 1
+  })).add(_all.TweenMax.to('.mission-pic', 2, {
+    opacity: 1
+  }), '+=2');
+  var sceneMission = new _scrollmagic.default.Scene({
+    triggerElement: '.team',
+    triggerHook: 0,
+    duration: 100,
+    offset: 10,
+    reverse: false
+  }).setClassToggle('.mission', 'visible').setClassToggle('.mission-pic', 'visible').setTween(tlMission).addTo(controller);
 
-var toggleContent = function toggleContent(headingsClass, parasClass) {
-  var headings = document.querySelectorAll(headingsClass);
-  var paras = document.querySelectorAll(parasClass);
+  var toggleContent = function toggleContent(headingsClass, parasClass) {
+    var headings = document.querySelectorAll(headingsClass);
+    var paras = document.querySelectorAll(parasClass);
 
-  var _loop = function _loop(i) {
-    headings[i].addEventListener('click', function () {
-      if (!paras[i].classList.contains('active')) {
-        _all.TweenMax.fromTo(paras[i], 1, {
-          opacity: 0,
-          y: -10
-        }, {
-          opacity: 1,
-          y: 0
-        });
+    var _loop = function _loop(i) {
+      headings[i].addEventListener('click', function () {
+        if (!paras[i].classList.contains('active')) {
+          _all.TweenMax.fromTo(paras[i], 1, {
+            opacity: 0,
+            y: -10
+          }, {
+            opacity: 1,
+            y: 0
+          });
 
-        paras[i].classList.add('active');
-      } else {
-        _all.TweenMax.fromTo(paras[i], 1, {
-          opacity: 1,
-          y: 0
-        }, {
-          opacity: 0,
-          y: -10
-        });
+          paras[i].classList.add('active');
+        } else {
+          _all.TweenMax.fromTo(paras[i], 1, {
+            opacity: 1,
+            y: 0
+          }, {
+            opacity: 0,
+            y: -10
+          });
 
-        paras[i].classList.remove('active');
-      }
-    });
+          paras[i].classList.remove('active');
+        }
+      });
+    };
+
+    for (var i = 0; i < headings.length; i++) {
+      _loop(i);
+    }
   };
 
-  for (var i = 0; i < headings.length; i++) {
-    _loop(i);
-  }
-};
+  toggleContent('.content--sub-heading', '.content--paragraph');
+}
 
-toggleContent('.content--sub-heading', '.content--paragraph');
+var _default = animate;
+exports.default = _default;
 },{"gsap/all":"node_modules/gsap/all.js","scrollmagic":"node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic.js","scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap":"node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js","scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators":"node_modules/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js"}],"js/utils.js":[function(require,module,exports) {
 "use strict";
 
@@ -21167,12 +21177,15 @@ exports.setVisible = setVisible;
 },{"./utils.js":"js/utils.js"}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
-require("./gsap");
+var _gsap = _interopRequireDefault(require("./gsap"));
 
 var _functions = require("./functions");
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 document.addEventListener('DOMContentLoaded', function () {
   (0, _functions.toggleNav)();
+  (0, _gsap.default)();
   (0, _functions.scrollToTop)();
 });
 },{"./gsap":"js/gsap.js","./functions":"js/functions.js"}],"../../../../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -21203,7 +21216,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59623" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62459" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
